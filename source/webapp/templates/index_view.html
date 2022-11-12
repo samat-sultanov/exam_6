@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block content %}
+    <br/>
+    <h3>Все записи гостевой книги:</h3>
+    <br/>
+    {% for record in records %}
+        <div style="width: 27rem">
+            <div class="card" style="display: flex">
+                <div class="card-body">
+                    <h6 class="card-title">{{ record.author }} ({{ record.email }})</h6>
+                    <p class="card-text">{{ record.text }}</p>
+                    <a href="#"><i class="bi bi-pencil-square"></i></a>
+                    <a href="#"><i class="bi bi-pencil-square"></i></a>
+                </div>
+            </div>
+            <br/>
+        </div>
+    {% endfor %}
+{% endblock %}
