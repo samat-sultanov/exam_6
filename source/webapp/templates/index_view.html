@@ -15,16 +15,19 @@
     <h3>Все записи гостевой книги:</h3>
     <br/>
     {% for record in records %}
-        <div style="width: 27rem">
-            <div class="card" style="display: flex">
-                <div class="card-body">
-                    <h6 class="card-title">{{ record.author }} ({{ record.email }})</h6>
-                    <p class="card-text">{{ record.text }}</p>
-                    <a href="#"><i class="bi bi-pencil-square"></i></a>
-                    <a href="#"><i class="bi bi-pencil-square"></i></a>
+        <div class="card" style="width: 33rem; border-radius: 1em;">
+            <div class="card-body">
+                <div style="text-align: left;">
+                    <h6 class="card-title" style="display: inline-block;">{{ record.author }} ({{ record.email }})</h6>
+                    <a style="float: right;"
+                       href="{% url "update_record" record.pk %}"><i
+                            class="bi bi-pencil-square"></i></a>
                 </div>
+                <p class="card-text">{{ record.text }}</p>
+                {#                <a href="{% url "delete_record" record.pk %}"><i class="bi bi-trash"></i></a>#}
+                {#                <p>{{ record.text }}</p>#}
             </div>
-            <br/>
         </div>
+        <br/>
     {% endfor %}
 {% endblock %}
