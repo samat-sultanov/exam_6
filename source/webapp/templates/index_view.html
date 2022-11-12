@@ -11,22 +11,34 @@
 {% endblock %}
 
 {% block content %}
-    <br/>
-    <h3>Все записи гостевой книги:</h3>
-    <br/>
-    {% for record in records %}
-        <div class="card" style="width: 33rem; border-radius: 1em; border-color: red; border-inline-width: 2px">
-            <div class="card-body">
-                <div style="text-align: left;">
-                    <h6 class="card-title" style="display: inline-block;">{{ record.author }} ({{ record.email }})</h6>
-                    <a style="float: right;"
-                       href="{% url "update_record" record.pk %}"><i class="bi bi-pencil-square"></i></a>
-                    <a style="float: right;"
-                       href="{% url "delete_record" record.pk %}"><i class="bi bi-trash"></i></a>
-                </div>
-                <p class="card-text">{{ record.text }}</p>
-            </div>
-        </div>
+    <br/><br/>
+    <div>
+        <form action="" method="get">
+            <input type="text" class="btn btn-outline-primary btn-sm" name="author">
+            <input type="submit" class="btn btn-danger btn-sm" value="Поиск">
+        </form>
+    </div>
+    <br/><br/>
+    {% if records %}
+        <h3>Все записи гостевой книги:</h3>
         <br/>
-    {% endfor %}
+        {% for record in records %}
+            <div class="card" style="width: 33rem; border-radius: 1em; border-color: red; border-inline-width: 2px">
+                <div class="card-body">
+                    <div style="text-align: left;">
+                        <h6 class="card-title" style="display: inline-block;">{{ record.author }}
+                            ({{ record.email }})</h6>
+                        <a style="float: right;"
+                           href="{% url "update_record" record.pk %}"><i class="bi bi-pencil-square"></i></a>
+                        <a style="float: right;"
+                           href="{% url "delete_record" record.pk %}"><i class="bi bi-trash"></i></a>
+                    </div>
+                    <p class="card-text">{{ record.text }}</p>
+                </div>
+            </div>
+            <br/>
+        {% endfor %}
+    {% else %}
+        <h3>Нету записей для данного автора!!!</h3>
+    {% endif %}
 {% endblock %}

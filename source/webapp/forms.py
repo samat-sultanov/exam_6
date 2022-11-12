@@ -7,3 +7,7 @@ class GuestBookForm(forms.Form):
     email = forms.EmailField(max_length=50, required=True, label="Email")
     text = forms.CharField(max_length=500, required=True, label="Текст",
                            widget=widgets.Textarea(attrs={'cols': 40, 'rows': 3}))
+
+
+class SearchForm(forms.Form):
+    author = forms.CharField(max_length=50, required=True, label="Автор")

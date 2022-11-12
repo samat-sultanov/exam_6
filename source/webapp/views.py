@@ -1,14 +1,23 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from webapp.models import GuestBook
-from webapp.forms import GuestBookForm
+from webapp.forms import GuestBookForm, SearchForm
 
 
 def index_view(request):
-    records = GuestBook.objects.filter(status='active').order_by('-created_at')
-    context = {
-        'records': records
-    }
+    form = SearchForm(data=request.GET)
+    if form.is_valid():
+        record = form.cleaned_data.get('author')
+        context = {
+            'records': GuestBook.objects.filter(author__iexact=record).filter(status='active').order_by(
+                '-created_at')
+        }
+        return render(request, 'index_view.html', context)
+    else:
+        records = GuestBook.objects.filter(status='active').order_by('-created_at')
+        context = {
+            'records': records
+        }
     return render(request, 'index_view.html', context)
 
 
