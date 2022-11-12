@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from webapp.views import index_view
+from webapp.views import index_view, create_record, update_record
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view, name='index_view'),
+    path('records/create', create_record, name='create_record'),
+    path('records/<int:pk>/update', update_record, name='update_record'),
 ]
