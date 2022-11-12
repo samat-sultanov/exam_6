@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Delete Record
+{% endblock %}
+
+{% block content %}
+    <br/><br/>
+    <div style="text-align: center">
+        <h3>Вы действительно хотите удалить запись номер {{ record.pk }} ?</h3>
+    </div>
+    <br/><br/><br/>
+    <div style="text-align: center">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger btn-lg" value="Да">
+            <a href="{% url 'index_view' %}" class="btn btn-danger btn-lg" role="button">Нет</a>
+        </form>
+    </div>
+
+{% endblock %}

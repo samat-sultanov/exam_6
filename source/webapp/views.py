@@ -48,3 +48,12 @@ def update_record(request, pk):
             return redirect('index_view')
         else:
             return render(request, 'update_record.html', {'form': form})
+
+
+def delete_record(request, pk):
+    record = get_object_or_404(GuestBook, pk=pk)
+    if request.method == "GET":
+        return render(request, "delete_record.html", {"record": record})
+    elif request.method == "POST":
+        record.delete()
+        return redirect("index_view")
